@@ -1,10 +1,9 @@
 class ResultsController < ApplicationController
 
   before_action :find_results, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
 
   def index
-    @results = Result.includes(:samples, :items)
+    @results = Sample.includes(:items)
   end
 
   def show
@@ -16,11 +15,13 @@ class ResultsController < ApplicationController
 
   def create
     item_ids = params[:item].keys
+
     item_ids.to_a.each do |item_id|
       @result = Result.create(:name => params[:result][:name],
                               :sample_id => params[:sample_id],
                               :item_id => item_id)
     end
+    
     redirect_to results_path
   end
 
