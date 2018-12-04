@@ -1,0 +1,22 @@
+<h1>样品</h1>
+<hr>
+<table>
+  <tr>
+    <td>序号</td>
+    <td>样品名称</td>
+    <td>样品编号</td>
+  </tr>
+  <% @samples.each_with_index do |sample, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= sample.name %></td>
+      <td><%= sample.code %></td>
+      <td><%= link_to "编辑", edit_sample_path(sample) %></td>
+      <td><%= link_to "删除", sample, method: :delete %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td><%= link_to "添加", new_sample_path %></td>
+  </tr>
+
+</table>

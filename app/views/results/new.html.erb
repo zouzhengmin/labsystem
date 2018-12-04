@@ -1,0 +1,21 @@
+<h1>新建测试模板</h1>
+<hr>
+
+
+<%= form_tag results_path method: :post do %>
+  测试模板名称：<%= text_field_tag "result[name]"%><br>
+  样品信息：<br>
+  <%= select_tag(:sample_id, options_for_select(Sample.pluck(:name, :id)))%>
+
+  <hr>
+
+
+  测试项目：<br>
+  <% Item.pluck(:name, :id).each do |item, item_id| %>
+    <%= check_box_tag("item[#{item_id}]")%>
+    <%= label_tag("item[#{item_id}]", item)%>
+  <% end %>
+
+  <%= submit_tag "测试项目选好了" %>
+<% end %>
+<%= link_to "添加表内没有的测试项目", new_item_path %>
