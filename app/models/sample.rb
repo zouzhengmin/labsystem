@@ -1,5 +1,5 @@
 class Sample < ApplicationRecord
-  has_many :results
-  has_many :items, :through => :results
+  has_many :templates, dependent: :destroy
+  has_many :items, :through => :templates
 
 end

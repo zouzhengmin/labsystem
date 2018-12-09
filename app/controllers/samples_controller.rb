@@ -16,7 +16,7 @@ class SamplesController < ApplicationController
   def create
     @sample = Sample.new(sample_params)
     if @sample.save
-      redirect_to samples_path
+      redirect_to templates_path
     else
       render :new
     end

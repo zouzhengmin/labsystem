@@ -1,28 +1,36 @@
-class ResultsController < ApplicationController
+class TemplatesController < ApplicationController
 
-  before_action :find_results, only: [:show, :edit, :update, :destroy]
+  before_action :find_templates, only: [:show, :edit, :update, :destroy]
+
+  def history
+  end
 
   def index
-    @results = Sample.includes(:items)
+    @samples = Sample.includes(:items)
   end
 
   def show
   end
 
   def new
-    @result = Result.new
+    @template = Template.new
   end
 
   def create
     item_ids = params[:item].keys
 
     item_ids.to_a.each do |item_id|
-      @result = Result.create(:name => params[:result][:name],
+      @template = Template.create(
                               :sample_id => params[:sample_id],
                               :item_id => item_id)
     end
-    
-    redirect_to results_path
+
+    if @template.save
+      redirect_to templates_path
+    else
+      render :new
+    end
+
   end
 
   def edit
@@ -37,10 +45,9 @@ class ResultsController < ApplicationController
 
   private
 
-    def find_results
-      @results = Result.find(params[:id])
+    def find_templates
+      @templates = Template.find(params[:id])
     end
-
 
     def sample_params
       params.require(:sample).permit!

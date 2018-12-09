@@ -1,0 +1,28 @@
+<h1>测试项目</h1>
+
+<%= link_to '生产监控', '#' %>
+<%= link_to '外来样品', '#' %>
+<%= link_to '新品研发', '#' %>
+<hr>
+
+<table>
+
+  <% @samples.each_with_index do |sample, index| %>
+  <tr>
+    <td><%= index + 1 %></td>
+    <%# if sample.templates.present? %>
+      <td><%#= sample.templates.last.name %></td>
+    <%# end %>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <% sample.items.each do |item| %>
+      <td><%= item.name %></td>
+    <% end %>
+  </tr>
+  <% end %>
+
+
+</table>
+<br>
+<%= link_to "添加模板", new_template_path %>

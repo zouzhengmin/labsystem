@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_many :results
-  has_many :samples, :through => :results
+  has_many :templates
+  has_many :samples, :through => :templates
 
 end

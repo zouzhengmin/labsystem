@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :samples
-  resources :results
+  resources :templates do
+    collection do
+      get :history
+    end
+  end
   resources :items
 
-  root 'results#index'
+  root 'templates#index'
 end
