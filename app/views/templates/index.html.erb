@@ -4,14 +4,13 @@
 <%= link_to '外来样品', '#' %>
 <%= link_to '新品研发', '#' %>
 <hr>
-
 <table>
 
   <% @samples.each_with_index do |sample, index| %>
   <tr>
     <td><%= index + 1 %></td>
     <%# if sample.templates.present? %>
-      <td><%#= sample.templates.last.name %></td>
+      <td><%#= sample.template_names %></td>
     <%# end %>
   </tr>
   <tr>
@@ -21,6 +20,10 @@
     <% end %>
   </tr>
   <% end %>
+  <tr>
+    <td></td>
+  </tr>
+
 
 
 </table>

@@ -3,12 +3,11 @@
 
 
 <%= form_tag templates_path method: :post do %>
-  测试模板名称：<%= text_field_tag "template[name]"%><br>
+  测试模板名称：<%= text_field_tag "template_name[name]"%><br>
   样品信息：<br>
   <%= select_tag(:sample_id, options_for_select(Sample.pluck(:name, :id)))%>
 
   <hr>
-
 
   测试项目：<br>
   <% Item.pluck(:name, :id).each do |item, item_id| %>
