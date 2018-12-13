@@ -1,5 +1,8 @@
 <h1>新建测试模板</h1>
 <hr>
+<% if flash[:error] %>
+  <div class="notice"><%= flash[:error] %></div>
+<% end %>
 
 
 <%= form_tag templates_path method: :post do %>

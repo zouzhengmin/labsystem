@@ -62,7 +62,8 @@ class TemplatesController < ApplicationController
       redirect_to templates_path
 
     else
-      render :new # flash: "测试模板和测试项目不能为空！"
+      flash[:error] =  "测试模板和测试项目不能为空！"
+      redirect_to new_template_path
     end
 
   end

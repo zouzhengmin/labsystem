@@ -4,24 +4,25 @@
 <%= link_to '外来样品', '#' %>
 <%= link_to '新品研发', '#' %>
 <hr>
+
+
+
 <table>
   <% @temp_names.each_with_index do |temp_name, index| %>
-    <% temp_name.templates.each do |template|%>
     <tr>
-      <td><%= index + 1 %></td>
+      <td><%= index +1 %></td>
       <td><%= temp_name.name %></td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
-      <td><%= @item[template.item_id] %></td>
+      <td> &nbsp;</td>
+      <td>
+        <% temp_name.templates.each do |template|%>
+          <%= @item[template.item_id] %>
+        <% end %>
+      </td>
     </tr>
-    <% end %>
+
   <% end %>
-
-
-
-
-
 
 </table>
 <br>
