@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_081413) do
+ActiveRecord::Schema.define(version: 2018_12_11_131841) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -46,7 +46,9 @@ ActiveRecord::Schema.define(version: 2018_12_10_081413) do
   create_table "templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "sample_id"
     t.integer "item_id"
-    t.index ["sample_id", "item_id"], name: "unique_coordinate_constraint", unique: true
+    t.string "random"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

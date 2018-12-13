@@ -5,24 +5,21 @@
 <%= link_to '新品研发', '#' %>
 <hr>
 <table>
-
-  <% @samples.each_with_index do |sample, index| %>
-  <tr>
-    <td><%= index + 1 %></td>
-    <%# if sample.templates.present? %>
-      <td><%#= sample.template_names %></td>
-    <%# end %>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <% sample.items.each do |item| %>
-      <td><%= item.name %></td>
+  <% @temp_names.each_with_index do |temp_name, index| %>
+    <% temp_name.templates.each do |template|%>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= temp_name.name %></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= @item[template.item_id] %></td>
+    </tr>
     <% end %>
-  </tr>
   <% end %>
-  <tr>
-    <td></td>
-  </tr>
+
+
+
 
 
 
