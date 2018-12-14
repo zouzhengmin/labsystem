@@ -11,6 +11,13 @@ class SamplesController < ApplicationController
 
   def new
     @sample = Sample.new
+    @templates = Template.includes(:samples,
+                                   :items,
+                                   :template_name,
+                                   :template_values,
+                                   )
+     @temp_names = TemplateName.includes(:templates)
+     @item = Item.pluck(:id,:name).to_h
   end
 
   def create

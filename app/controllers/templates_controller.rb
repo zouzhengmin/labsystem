@@ -48,10 +48,13 @@ class TemplatesController < ApplicationController
       create_random = ((0..9).to_a + ('a'..'z').to_a).shuffle[0,16].join
 
       item_ids.to_a.each do |item_id|
+
+        # binding.pry
         @template = Template.create(
                                     :sample_id => params[:sample_id],
                                     :item_id => item_id,
                                     :random =>create_random
+
                                    )
         @temp_name_mid = TempNameMid.create(
                                             :template_id => @template.id,
@@ -80,9 +83,9 @@ class TemplatesController < ApplicationController
 
   private
 
-    # def find_templates
-    #   @templates = Template.find(params[:id])
-    # end
+    def template_params
+      params.require(:templates).permit!
+    end
     #
     # def sample_params
     #   params.require(:sample).permit!

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
   end
   resources :items
+  resources :template_values
 
   root 'templates#index'
 end

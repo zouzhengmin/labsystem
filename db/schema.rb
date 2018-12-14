@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_131841) do
+ActiveRecord::Schema.define(version: 2018_12_14_014022) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -38,17 +38,13 @@ ActiveRecord::Schema.define(version: 2018_12_11_131841) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "template_values", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.decimal "value", precision: 10
-    t.integer "template_id"
-  end
-
   create_table "templates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "sample_id"
     t.integer "item_id"
     t.string "random"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "value", precision: 10, null: false
   end
 
 end
