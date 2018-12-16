@@ -44,6 +44,11 @@ class SamplesController < ApplicationController
     @sample.delete
     redirect_to samples_path
   end
+  
+  def history
+    @samples = Sample.includes(:templates).order('id desc')
+  end
+
 
   private
 

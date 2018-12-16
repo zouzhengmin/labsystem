@@ -18,10 +18,11 @@
     <tr>
       <td><%= check_box_tag("item[#{item_id}]") %></td>
       <td><%= label_tag("item[#{item_id}]", item) %></td>
-
-      <% Template.pluck(:value, :id).each do |value, t_id| %>
-        <td><%= text_field_tag ("[#{value}]") %></td>
-      <% end %>
+      <td><input type="text" name="value[<%=item_id%>]">
+      <%# Template.pluck(:value, :id).each do |value, t_id| %>
+        <!-- <td><%#= text_field_tag "value[#{item_id}]" %></td>
+        这里不用text_feild_tag，而用input -->
+      <%# end %>
 
     </tr>
     <% end %>

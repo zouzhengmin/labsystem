@@ -5,8 +5,6 @@
 <%= link_to '新品研发', '#' %>
 <hr>
 
-
-
 <table>
   <% @temp_names.each_with_index do |temp_name, index| %>
     <tr>
@@ -16,7 +14,7 @@
     <tr>
       <td> &nbsp;</td>
       <td>
-        <% temp_name.templates.each do |template|%>
+        <% temp_name.templates.each do |template| %>
           <%= @item[template.item_id] %>
         <% end %>
       </td>
