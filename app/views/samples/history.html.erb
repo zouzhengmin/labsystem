@@ -1,0 +1,23 @@
+<h1>测试结果</h1>
+
+<table>
+  <tr>
+    <td>产品名称</td>
+    <td>产品编号</td>
+    <td>测试指标</td>
+    <hr>
+  </tr>
+  <% @samples.each do |sample| %>
+    <tr>
+      <td><%= sample.name %></td>
+      <td><%= sample.code %></td>
+    </tr>
+    <% sample.templates.each do |template| %>
+      <tr>
+        <td><%= template.item.name %></td>
+        <td><%= template.value %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<%= link_to "新建测试数据", new_sample_path %>

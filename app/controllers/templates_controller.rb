@@ -65,9 +65,6 @@ class TemplatesController < ApplicationController
     end
   end
 
-  def history
-    @samples = Sample.includes(:templates).order('id desc')
-  end
 
 
   def edit
