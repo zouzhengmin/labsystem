@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_063608) do
+ActiveRecord::Schema.define(version: 2018_12_18_150341) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.integer "samples_counter", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["title"], name: "index_categories_on_title"
+  end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -23,6 +33,12 @@ ActiveRecord::Schema.define(version: 2018_12_18_063608) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "category_id"
+    t.string "status"
+    t.text "description"
+    t.index ["category_id"], name: "index_samples_on_category_id"
+    t.index ["code"], name: "index_samples_on_code", unique: true
+    t.index ["name"], name: "index_samples_on_name"
   end
 
   create_table "temp_name_mids", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
