@@ -20,7 +20,6 @@
         <li><a href="#">分类</a></li>
       </ul>
 
-
       <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="样品名称..">
@@ -28,11 +27,16 @@
         <button type="submit" class="btn btn-default">搜索</button>
       </form>
 
-
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">购物车</a></li>
-        <li><a href="#">注册</a></li>
-        <li><a href="#">登录</a></li>
+        <% unless logged_in? %>
+          <li><a href="<%= new_user_path %>">注册</a></li>
+          <li><a href="<%= new_session_path %>">登录</a></li>
+        <% else %>
+          <li><a href="#">欢迎你，<%= current_user.username %></a></li>
+          <li><%= link_to "退出", logout_path, method: :delete%></a></li>
+
+        <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
           aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>

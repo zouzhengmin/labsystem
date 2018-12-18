@@ -4,21 +4,31 @@ class User < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
   validates_presence_of :email, message: "邮箱不能为空"
+  validates_format_of :email, message: "邮箱格式不对",
+                      with: /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/,
+                      if: proc { |user| !user.email.blank? }
+                        # 当用户邮箱不为空的情况下，才校验邮箱格式，如果为空，就不校验这一步。
   validates :email, uniqueness: true
 
   validates_presence_of :password, message: "密码不能为空",
                         if: :need_validate_password
-  validates_presence_of :password_confirmation, message: "密码确认不能为空"
+  validates_presence_of :password_confirmation, message: "密码确认不能为空",
                         if: :need_validate_password
-  validates_confirmation_of :password, message: "密码不一致"
+  validates_confirmation_of :password, message: "密码不一致",
                         if: :need_validate_password
-  validates_length_of :password, message: "密码最短为6位", munimum: 6
+  validates_length_of :password, message: "密码最短为6位", minimum: 6,
                         if: :need_validate_password
 
+
+  def username
+    self.email.split('@').first
+  end
+  
   private
 
   def need_validate_password
     self.new_record? ||
+    (!self.password.nil? || !self.password_confirmation.nil?)
   end
 
 end

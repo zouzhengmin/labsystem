@@ -319,7 +319,7 @@ Rails.application.config.sorcery.configure do |config|
     # manually handle how and when email is sent.
     # Default: `false`
     #
-    user.activation_mailer_disabled = ture
+    user.activation_mailer_disabled = true
 
     # method to send email related
     # options: `:deliver_later`, `:deliver_now`, `:deliver`
@@ -361,7 +361,7 @@ Rails.application.config.sorcery.configure do |config|
     # mailer class. Needed.
     # Default: `nil`
     #
-    # user.reset_password_mailer =
+    user.reset_password_mailer = UserMailer
 
     # reset password email method on your mailer class.
     # Default: `:reset_password_email`
