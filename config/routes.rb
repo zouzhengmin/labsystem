@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  root 'welcome#index'
+
   resources :samples do
     collection do
       get :history
@@ -9,5 +12,4 @@ Rails.application.routes.draw do
   resources :items
   resources :template_values
 
-  root 'templates#index'
 end
