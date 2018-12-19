@@ -4,8 +4,14 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :find_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.roots.paginate(:page => params[:page], :per_page => 20).order("id desc")
-    # roots为ancestry中的一级分类
+    if params[:id].blank?
+      @categories = Category.roots.paginate(:page => params[:page], :per_page => 20).order("id desc")
+    else
+      @category = Category.find(params[:id])
+      @categories = @category.children.paginate(:page => params[:page], :per_page => 20).order("id desc")
+    end
+    # roots和children为ancestry中的一级分类
+    # index和show页面合并，先判断是否有id，没有的话为一级分类并显示，有id的话为子分类，把子分类展示出来。
   end
 
   def new
@@ -49,6 +55,7 @@ class Admin::CategoriesController < Admin::BaseController
     end
 
   end
+  
   private
 
   def category_params

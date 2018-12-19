@@ -1,5 +1,5 @@
 <div>
-  <h1><%= @category.new_record? ? "新建样品分类" : "修改样品分类##{params[:id]}" %></h1>
+  <h1><%= @category.new_record? ? "新建样品分类" : "修改样品分类##{params[:id]}" %></h1><hr>
 </div>
 
 <div class="form-body">
@@ -43,10 +43,10 @@
 
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-8">
-        <%= f.submit (@category.new_record? ? "新建样品分类" : "编辑产品分类"), class: "btn btn-primary" %>
+        <%= f.submit (@category.new_record? ? "新建" : "编辑"), class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
 
-  
+
 </div>
