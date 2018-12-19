@@ -17,6 +17,7 @@ gem 'bootstrap-sass'
 gem 'ancestry'
 gem 'font-awesome-rails'
 gem 'sorcery'
+gem 'will_paginate'
 
 
 gem 'bootsnap', '>= 1.1.0', require: false
