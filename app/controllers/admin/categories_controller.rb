@@ -1,9 +1,10 @@
 class Admin::CategoriesController < Admin::BaseController
 
-  before_action :find_root_categories, only: [:new, :create, :edit, :update]
+  before_action :find_categories, only: [:new, :create, :edit, :update]
   before_action :find_category, only: [:edit, :update, :destroy]
 
   def index
+     binding.pry
     if params[:id].blank?
       @categories = Category.roots.paginate(:page => params[:page], :per_page => 20).order("id desc")
     else
@@ -62,8 +63,8 @@ class Admin::CategoriesController < Admin::BaseController
     params.require(:category).permit!
   end
 
-  def find_root_categories
-    @root_categories = Category.roots.order(id: "desc")
+  def find_categories
+    @categories = Category.all.order(id: "desc")
   end
 
   def find_category
