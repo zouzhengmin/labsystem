@@ -1,4 +1,4 @@
-class SamplesController < ApplicationController
+class Admin::SamplesController < Admin::BaseController
 
   before_action :find_sample, only: [:edit, :update, :destroy]
 
@@ -9,26 +9,33 @@ class SamplesController < ApplicationController
 
   def new
     @sample = Sample.new
+    @root_categories = Category.roots
   end
 
   def create
     @sample = Sample.new(sample_params)
+    @root_categories = Category.roots
+
     if @sample.save
       flash[:notice] = "添加成功"
-      redirect_to samples_path
+      redirect_to admin_samples_path
     else
       render :new
     end
   end
 
   def edit
+    @root_categories = Category.roots
+
     render :new
   end
 
   def update
+    @root_categories = Category.roots
+
     if @sample.update(sample_params)
       flash[:notice] = "修改成功"
-      redirect_to samples_path
+      redirect_to admin_samples_path
     else
       render :new
     end
@@ -37,7 +44,7 @@ class SamplesController < ApplicationController
   def destroy
     if @sample.destroy
       flash[:notice] = "删除成功"
-      redirect_to samples_path
+      redirect_to admin_samples_path
     else
       flash[:notice] = "修改失败"
       redirect_to :back

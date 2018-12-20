@@ -1,0 +1,40 @@
+<div>
+  <div class="pull-right">
+    <%= link_to "新建样品", new_admin_sample_path, class: "btn btn-primary" %>
+  </div>
+  <h1>
+    样品(<%= @samples.total_entries %>)
+  </h1>
+  <br>
+  <!-- total_entries为will_paginate的方法，取出所有数目 -->
+</div>
+
+<div>
+  <table class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>样品名称</th>
+      <th>样品编码</th>
+      <th>描述</th>
+      <th></th>
+    </tr>
+
+    <% @samples.each do |sample| %>
+      <tr>
+        <td><%= sample.id %></td>
+        <td><%= sample.name %></td>
+        <td><%= sample.code %></td>
+        <td><%= sample.description %></td>
+        <td align="right">
+          <%= link_to "编辑样品", edit_admin_sample_path(sample) %> |
+          <%= link_to "删除样品", admin_sample_path(sample), method: :delete,
+            'data-confirm': "你确定要删除吗？" %>|
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div>
+  <%= will_paginate @samples, renderer: BootstrapPagination::Rails%>
+</div>
