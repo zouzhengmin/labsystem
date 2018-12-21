@@ -4,7 +4,7 @@ class Admin::CategoriesController < Admin::BaseController
   before_action :find_category, only: [:edit, :update, :destroy]
 
   def index
-     binding.pry
+
     if params[:id].blank?
       @categories = Category.roots.paginate(:page => params[:page], :per_page => 20).order("id desc")
     else
@@ -21,7 +21,14 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def create
-    @category = Category.new(category_params)
+    # binding.pry
+    parent_id = params[:category][:ancestry]
+    if parent_id == nil.to_s
+      @category = Category.new(category_params)
+    else
+      @category = Category.find(params[:category][:ancestry].to_i)
+      @category = @category.children.new(category_params)
+    end
 
     if @category.save
       flash[:notice] = "保存成功"
@@ -47,20 +54,19 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    if @category.destroy
+      if @category.descendants.any?
+        @category.descendants.delete_all
+      end
+      @category.delete
       flash[:notice] = "删除成功"
       redirect_to admin_categories_path
-    else
-      flash[:notice] = "删除失败"
-      redirect_to :back
-    end
-
   end
 
   private
 
   def category_params
-    params.require(:category).permit!
+    params.require(:category).permit(:title)
+    # 这里permit不加入：ancestry，加入后反而不对。
   end
 
   def find_categories
