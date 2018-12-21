@@ -8,17 +8,18 @@ class SamplesController < ApplicationController
   end
 
   def new
-    # binding.pry
     @categories = Category.all
     @sample = Sample.new
   end
 
   def create
     @sample = Sample.new(sample_params)
+    @sample.save
     if @sample.save
-      flash[:notice] = "添加成功"
+      flash[:notice] = "样品添加成功"
       redirect_to samples_path
     else
+      flash[:notice] = "样品添加失败"
       render :new
     end
   end
@@ -58,7 +59,7 @@ class SamplesController < ApplicationController
   end
 
   def sample_params
-    params.require(:sample).permit(:name, :code, :description)
+    params.require(:sample).permit(:name, :code, :description, :category_id)
   end
 
 end

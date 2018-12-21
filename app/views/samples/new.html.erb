@@ -1,1 +1,59 @@
-<%= render "form"%>
+<div>
+  <h2><%= @sample.new_record? ? "新增样品" : "修改样品信息##{params[:id]}" %></h2><hr>
+</div>
+
+
+<%= form_for @sample,
+  url: (@sample.new_record? ? samples_path : sample_path(@sample)),
+  method: (@sample.new_record? ? 'post' : 'put'),
+  html: {class: 'form-horizontal'} do |f| %>
+
+  <% if @sample.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="list-unstyled">
+        <% @sample.errors.messages.values.flatten.each do |error| %>
+          <li><i class="fa fa-exclamation-circle"><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="category_id" class="col-sm-2 control-label">所属分类:</label>
+    <div class="col-sm-5">
+      <select name="sample[category_id]">
+        <% Category.all.each do |category| %>
+          <option value="<%= category.id %>"><%= category.title %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">样品名称:</label>
+    <div class="col-sm-5">
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">样品编码:</label>
+    <div class="col-sm-5">
+      <%= f.text_field :code, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">产品描述:</label>
+    <div class="col-sm-5">
+      <%= f.text_area :description, class: "form-control", required: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%= f.submit (@sample.new_record? ? "新增样品" : "编辑样品"), class: "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>
