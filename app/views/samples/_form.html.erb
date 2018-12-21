@@ -23,7 +23,7 @@
     <div class="col-sm-5">
       <select name="category[id]">
         <% Category.all.each do |category| %>
-          <option value="<%= category.id %>" <%= category.title %></option>
+          <option value="<%= category.id %>"><%= category.title %></option>
         <% end %>
       </select>
     </div>
