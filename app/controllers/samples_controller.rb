@@ -8,6 +8,8 @@ class SamplesController < ApplicationController
   end
 
   def new
+    # binding.pry
+    @categories = Category.all
     @sample = Sample.new
   end
 

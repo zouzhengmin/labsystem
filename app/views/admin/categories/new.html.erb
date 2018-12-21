@@ -12,7 +12,7 @@
       <div class="alert alert-danger">
         <ul class="list-unstyled">
           <% @category.errors.messages.values.flatten.each do |error| %>
-            <li><i class="fa fa-exclamation-circle"></li> <%= error %></li>
+            <li><i class="fa fa-exclamation-circle"><%= error %></li>
           <% end %>
         </ul>
       </div>
