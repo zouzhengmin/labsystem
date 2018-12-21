@@ -5,7 +5,7 @@
 <% end %>
 
 
-<%= form_tag templates_path method: :post do %>
+<%= form_tag admin_templates_path method: :post do %>
   测试模板名称：<%= text_field_tag "template_name[name]"%><br>
   样品信息：<br>
   <%= select_tag(:sample_id, options_for_select(Sample.pluck(:name, :id)))%>
@@ -33,4 +33,4 @@
 <% end %>
 
 
-<%= link_to "添加表内没有的测试项目", new_item_path %>
+<%= link_to "添加表内没有的测试项目", new_admin_item_path %>

@@ -1,5 +1,5 @@
 <table>
-  <%= form_for @item do |f| %>
+  <%= form_for @item, url: admin_items_path do |f| %>
   <tr>
     <td>测试项目：</td>
     <td><%= f.text_field :name %></td>

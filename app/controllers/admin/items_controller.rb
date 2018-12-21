@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Admin::ItemsController < Admin::BaseController
 
   before_action :find_item, only: [:show, :edit, :update, :destroy]
 
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_path
+      redirect_to admin_items_path
     else
       render :new
     end
@@ -26,17 +26,17 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item.update(item_params)
     if @item.update(item_params)
-      redirect_to items_path
+      redirect_to admin_items_path
     else
       render :edit
     end
   end
 
   def destroy
-    # binding.pry
     @item.delete
-    redirect_to items_path
+    redirect_to admin_items_path
   end
 
   private

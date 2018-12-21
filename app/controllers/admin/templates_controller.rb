@@ -1,4 +1,4 @@
-class TemplatesController < ApplicationController
+class Admin::TemplatesController < Admin::BaseController
 
   def index
     # @templates = Template.all.group_by{|x| x.random}
