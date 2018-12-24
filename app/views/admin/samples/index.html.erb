@@ -15,6 +15,7 @@
       <th>ID</th>
       <th>样品名称</th>
       <th>样品编码</th>
+      <th>样品所属分类</th>
       <th>描述</th>
       <th></th>
     </tr>
@@ -24,6 +25,7 @@
         <td><%= sample.id %></td>
         <td><%= sample.name %></td>
         <td><%= sample.code %></td>
+        <td><%= sample.category.title %></td>
         <td><%= sample.description %></td>
         <td align="right">
           <%= link_to "编辑样品", edit_admin_sample_path(sample) %> |

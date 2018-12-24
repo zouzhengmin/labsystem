@@ -1,15 +1,4 @@
-<h1>新建测试模板</h1>
-<hr>
-<% if flash[:error] %>
-  <div class="notice"><%= flash[:error] %></div>
-<% end %>
 
-
-<%= form_tag admin_templates_path method: :post do %>
-  测试模板名称：<%= text_field_tag "template_name[name]"%><br>
-  样品信息：<br>
-  <%= select_tag(:sample_id, options_for_select(Sample.pluck(:name, :id)))%>
-  <hr>
 
 <h2>测试项目：</h2>
 
@@ -18,7 +7,6 @@
     <tr>
       <td><%= check_box_tag("item[#{item_id}]") %></td>
       <td><%= label_tag("item[#{item_id}]", item) %></td>
-      <td><input type="text" name="value[<%=item_id%>]">
       <%# Template.pluck(:value, :id).each do |value, t_id| %>
         <!-- <td><%#= text_field_tag "value[#{item_id}]" %></td>
         这里不用text_feild_tag，而用input -->
@@ -30,7 +18,7 @@
 
     <%= submit_tag "测试项目选好了" %>
 
-<% end %>
+
 
 
 <%= link_to "添加表内没有的测试项目", new_admin_item_path %>

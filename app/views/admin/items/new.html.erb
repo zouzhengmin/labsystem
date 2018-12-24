@@ -1,4 +1,31 @@
 <h1>新增测试项目</h1>
-<hr>
 
-<%= render "form"%>
+<div class="form-body">
+  
+  <%= form_for @item, url: admin_items_path do |f| %>
+
+    <% if @item.errors.any? %>
+      <div class="alert alert-danger">
+        <ul class="list-unstyled">
+          <% @item.errors.messages.values.flatten.each do |error| %>
+            <li><i class="fa fa-exclamation-circle"><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">测试项目:</label>
+      <div class="col-sm-5">
+        <%= f.text_field :name, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <%= f.submit "提交", class: "btn btn-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

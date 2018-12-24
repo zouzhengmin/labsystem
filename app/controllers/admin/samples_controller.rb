@@ -10,6 +10,7 @@ class Admin::SamplesController < Admin::BaseController
   def new
     @sample = Sample.new
     @root_categories = Category.roots
+    @categories = Category.all
   end
 
   def create
